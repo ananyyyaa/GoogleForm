@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html ng-app="bankApp">
+<head>
+    <meta charset="utf-8">
+    <title>Bank of Baroda Debit Card Application</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<style>
+
+.form-container {
+            border: 2px solid #0a0909;
+            padding: 20px;
+            width: 80%; 
+            box-sizing: border-box;
+            
+        }
+
+    .signature-box {
+    margin-top: 20px; 
+}
+
+.signature-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.signature-input {
+    margin-right: 20px; 
+}
+
+.subscript {
+    font-size: 12px;
+    margin-top: 5px; 
+    color: gray;
+    
+
+}
+.bordered-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.bordered-table th, .bordered-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.bordered-table th {
+    background-color: #f2f2f2;
+    
+}
+
+
+
+</style>
+
+
+<body ng-controller="DebitCardController">
+
+  <form name="debitCardForm" ng-submit="submitForm()">
+      <div class="form-container">
+        <h2>Application form for Bank of Baroda INTERNATIONAL DEBIT CARD </h2>
+
+        <label>Name of the Branch:</label>
+        <input type="text" ng-model="branchName" required>
+
+        <label>Account Type:</label>
+        <input type="text" ng-model="accountType" required>
+        
+        <label>Account Number:</label>
+        <input type="text" ng-model="accountNumber" required>
+        <br>
+        <br>
+        <label>I have an ATM Card Number:</label>
+        <input type="text" ng-model="atmCardNumber">
+        <p> issued to me and linked to the account. I would like to link our savings account to the debit card also.<br>
+            ✔️I confirm that I have the required mandate to operate the account singly.<br>
+
+            ✔️I/We authorize Bank Of Baroda to issue a Debit cum ATM card to me/us.<br>
+            
+            ✔️I/We understand that upon issue of a debit card to me/us , the existing ATM card of Bank of Baroda's standalone ATM if any, may be deactivated.<br>
+            
+            ✔️I/We further unconditionally and irrevocably authorize you my/our account annually for Debit Card fees/Charges.
+            <p>
+
+        <h3> The particulars are as under :</h3>
+
+        <label><b>1.</b>  Name:</label>
+        <input type="text" ng-model="name" required ng-style="{ 'width': '300px' }">
+        <br>
+        <br>
+        
+        <label>Date of Birth:</label>
+        <input type="text" ng-model="dob" required ng-style="{ 'width': '270px' }">
+        
+        
+        <label>Gender:</label>
+        <input type="radio" ng-model="gender" value="Male" > Male
+        <input type="radio" ng-model="gender" value="Female"> Female
+        <br>
+        <br>
+
+        <label>Name as required on card </label>
+        <input type="text" ng-model="name1" required ng-style="{ 'width': '195px' }">
+
+        <p>(Not to exceed 20 characters) (No Nicknames) (Please leave one blank space in between each name)</p>
+
+        <label><b>2.</b> Residential Address:</label>
+        <input type="text" ng-model="RA" required ng-style="{ 'width': '500px' }"><br>
+        <input type="text" ng-model="RA" required ng-style="{ 'width': '495px' ,'margin-left': '155px'}">
+        <br>
+        <br>
+
+        <label style="margin-left: 120px;">City:</label>
+        <input type="text" ng-model="city" required ng-style="{ 'width': '230px'  }">
+
+
+        <label>Pin Code:</label>
+        <input type="text" ng-model="pc" required ng-style="{ 'width': '185px' }">
+        <br>
+        <br>
+
+        <label><b>3.</b> Office Address:</label>
+        <input type="text" ng-model="OA" required ng-style="{ 'width': '530px' }"><br>
+        <input type="text" ng-model="OA" required ng-style="{ 'width': '530px','margin-left': '120px' }">
+
+        <br>
+        <br>
+
+        <label style="margin-left: 120px;">City:</label>
+        <input type="text" ng-model="city" required ng-style="{ 'width': '235px' }">
+
+        <label>Pin Code:</label>
+        <input type="text" ng-model="pc" required ng-style="{ 'width': '180px' }">
+        <br>
+        <br>
+
+        <label>Tel. No(O):</label>
+        <input type="text" ng-model="o" required ng-style="{ 'width': '260px' }">
+
+        <label>(R):</label>
+        <input type="text" ng-model="r" required ng-style="{ 'width': '271px' }">
+        <br>
+        <br>
+
+        <label>Mobile No. :</label>
+        <input type="text" ng-model="mob" required ng-style="{ 'width': '260px' }">
+
+        <label>E-Mail</label>
+        <input type="text" ng-model="mail" required ng-style="{ 'width': '245px' }">
+        <br>
+        <br>
+
+        <label><b>4.</b> PREFEERED ADDRESS FOR DELIEVERING DEBIT CARD/PIN MAILER:</label>
+        <input type="radio" ng-model="pre" value="Male"> OFFICE
+        <input type="radio" ng-model="pre" value="Female"> RESIDENCE
+        <br>
+        <br>
+
+        <p>DECLARATION/DEBIT CARD UNDERTAKING: </p>
+        <p>I/We have received, read and understood the terms and conditions governing the usage of the Debit Card. I/We accept to be bound by the said terms and
+            conditions and to any changes made therein from time to time by the Bank at its sole discretion without any notice to me/us. I confirm that i am the sole
+            account holder or have the required mandate to operate the account limked to the Debit Card singly and that I/We have completed 18 years of age . I/We
+            I/We understand that upon issue of Debit Card to me/us , the existing ATM Card of Bank Of Baroda's standalone ATM linked to my/ our accountwill be deactivated.
+            <br>
+            <br>
+            
+            I/we understand and undertake that the usage of the Debit Card shall be strictly in accordance with the Exchange Control regulations and in the event of any failure to do so, 
+            I/We will be liable for action under the Foreign Exchange Management Act, 1999 and the amendments thereof stipulated by Reserve Bank of India from time to time.
+            <br>
+            <br>
+            I/We accept full responsibility for my/our Debit Card and agree not to make any claims against Bank Of Baroda in respect thereto</p>
+
+            <div class="signature-box">
+                <div class="signature-line">
+                    <div class="signature-input">
+                        <input type="text" id="applicantSignature" ng-model="applicantSignature" ng-style="{ 'width': '500px' ,'height': '40px' }">
+                        <div class="subscript">(Applicant's Signature)</div>
+                        <input type="text" id="otherSignature" ng-model="otherSignature" ng-style="{ 'width': '500px' , 'height': '40px' }">
+                        <div class="subscript">(Other Account Holder's Signature)</div>
+                    </div>
+                </div>
+        
+            </div>
+            
+        <label>Date</label>
+        <input type="text" ng-model="date" required ng-style="{ 'width': '180px' }">
+        
+        <label>Branch Code</label>
+        <input type="text" ng-model="bc" required ng-style="{ 'width': '190px' }">
+        <br>
+        <br>
+        
+
+            <table class="bordered-table">
+                <thead>
+                    <tr>
+                        <th>For use in Branch</th>
+                        <th>Name of the Officer</th>
+                        <th>Signature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in users">
+                        <td>{{user.branch}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.sig}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <button type="submit"><b>SUBMIT APPLICATION</b></button>
+
+    </div>
+
+        
+        
+        
+
+    </form>
+
+    <script>
+        var app = angular.module('bankApp', []);
+        app.controller('DebitCardController', function($scope) {
+
+        $scope.users = [
+            { branch: 'Signature verified by', name: 'Gowri K S', sig: 'GKS //..' },
+            { branch: 'Signature verified by', name: 'Disha Bhat', sig: 'DB //..' }
+         
+        ];
+
+       
+            $scope.submitForm = function() {
+                if($scope.branchName == 'RBI Layout' && $scope.accountType == 'Personal Account' &&  $scope.name == 'Ananya'){
+                alert('SUCCESSFULLY SUBMITTED APPLICATION'); 
+                }  
+            else{
+                alert('SUBMISSION FAILED');}
+
+                 };
+        });
+    </script>
+
+</body>
+</html>
+ 
